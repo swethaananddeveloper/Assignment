@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>OBJECT</title>
+    </head>
+    <body>
+<!---1 question starts here-->
+        <script>
+            /*Find the sum of people's budgets.*/
+            const people = 
+            [
+                {name: "swetha", budget: 90000 },
+                {name: "Hari", budget: 70000 },
+                {name: "Anand", budget: 50000 }, ];
+
+            let total = 0;
+
+            for (let i = 0; i < people.length; i++){
+                total = total + people[i].budget;
+            }
+            console.log("Total Budget =", total);
+
+           /*output - Total Budget = 210000*/
+           </script>
+ <!---1 question ends here-->
+
+  <!---2 question starts here-->
+  <script>
+    /* Display book name according to the name author & reading status*/
+
+     var book1 = {
+    author: "Bill Gates",
+    title: "The Road Ahead",
+    readingStatus: "Already read '" + "Bill Gates" + "' by The Road Ahead."
+    };
+    var book2 = {
+    author: "Steve Jobs",
+    title: "Walter Isaacson",
+    readingStatus: "Already read '" + "Steve Jobs" + "' by Walter Isaacson."
+    };
+    var book3 = {
+    author: "Suzanne Collins",
+    title: "Mockingjay: The Final Book of The Hunger Games",
+    readingStatus: "You still need to read 'Mockingjay: The Final Book of The Hunger Games' by Suzanne Collins."  
+    };
+
+    console.log(book1.readingStatus);
+    console.log(book2.readingStatus);
+    console.log(book3.readingStatus);
+
+    /*output --  Already read 'Bill Gates' by The Road Ahead.
+     Already read 'Steve Jobs' by Walter Isaacson.
+     You still need to read 'Mockingjay: The Final Book of The Hunger Games' by Suzanne Collins.*/
+   </script>
+<!---2 question ends here-->
+
+<!---3 question starts here-->
+   <script>
+    /*Using compare operator compare 2 objects and return true or false
+accordingly.*/
+    // Example 1
+    var obj1 = { a: 1, b: 2 };
+    var obj2 = { a: 1, b: 2 };
+    var result1 = (obj1.a === obj2.a) && (obj1.b === obj2.b);
+    console.log(result1);   
+
+    // Example 2
+    var obj3 = { a: 2, b: 2 };
+    var obj4 = { a: 1, b: 2 };
+
+    var result2 = (obj3.a === obj4.a) && (obj3.b === obj4.b);
+    console.log(result2);  
+
+    // Example 3 (empty objects)
+    var obj5 = {};
+    var obj6 = {};
+
+    var result3 = true;  
+    console.log(result3);  
+    
+    /* output
+    1 - true
+    2- false
+    3- true*/
+
+   </script>
+<!--3 Question ends here-->
+
+<!--4 question starts here-->
+    <script>
+     const person1 = { 
+    name: 'Alex', 
+    address: '15th Park Avenue', 
+    age: 43,
+    salary: 123455
+    };
+
+    const person2 = { 
+    name: 'Bob', 
+    address: 'Canada', 
+    age: 53
+    };
+    Object.assign(person2, { salary: person1.salary });
+    console.log(person2);
+    console.log(person1);
+    /*output - 
+    Objectaddress: "Canada"
+    age: 53name: "Bob"
+    salary: 123455
+    [[Prototype]]: Object*/
+   </script>
+<!--4 question ends here-->
+
+<!--5 question starts here-->
+   <script>
+    // 9.) Math.random() - It gives a random value between 0 to 1 
+    const randomValue = Math.random();
+    console.log(`Random Value : ${randomValue}`);
+
+    // Generate 10-digit alphanumeric coupon using Math.random
+    const couponNum = Math.random() * 1e16; // large number for enough characters
+    const coupon = couponNum.toString(36).toUpperCase().slice(0, 10);
+
+    console.log(`10-digit Coupon : ${coupon}`);
+   </script>
+<!--5 question ends here-->
+
+<!---6 Question starts here-->
+   <script>
+    const d = new Date();
+
+    const time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+    console.log("Current time: " + time);
+
+    </script>
+<!---6 question ends here -->
+
+<!---7 question starts here-->
+    <script>
+    const inputDate = "2024-11-18";
+    const date = new Date(inputDate);
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const dayIndex = date.getDay();
+    const dayName = days[dayIndex];
+
+    console.log(`Input: "${inputDate}"`);
+    console.log(`Output: ${dayName}`);
+   </script>
+<!---7 question ends here-->
+<!---8 question starts here -->
+   <script>
+     const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+
+    console.log("Random RGB Color: ", r, g, b);
+   </script>
+<!---8 question ends here-->
+
+<!---9 question starts here-->
+   <script>
+       console.log("Random float between 5 and 15: " + (Math.random() * (15 - 5) + 5));
+   </script>
+<!---9 question ends here-->
+
+<!---10 question starts here-->
+  <script>
+    const today = new Date();
+    const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+    const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+    console.log("First Day of Month: " + firstDay);
+    console.log("Last Day of Month: " + lastDay);
+  </script>
+<!---10 question ends here-->
+    </body>
+</html>
