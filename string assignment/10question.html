@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> string to specifies length and adds</title>
+
+    </head>
+    <body>
+        <script>
+            let text = "Lorem ipsum dolor sit amet";
+let maxLength = 10;
+
+let result = "";
+let count = 0;
+
+// Copy characters until maxLength
+for (let i = 0; i < text.length; i++) {
+    if (count < maxLength) {   // using < only, not !=
+        result += text[i];
+        count = count + 1;
+    }
+}
+
+// Check if truncation happened
+if (text.length > maxLength) {   // using > only
+    result += "...";
+}
+
+console.log(result);
+
+        </script>
+    </body>
+</html>

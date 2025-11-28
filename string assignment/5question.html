@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+
+        </title>
+    </head>
+
+    <body>
+
+        <script>
+let sentence = "The quick brown fox jumps over the lazy dog";
+
+let longest = "";
+let word = "";
+
+// Go through each character
+for (let i = 0; i < sentence.length; i++) {
+    let ch = sentence[i];
+
+    if (ch == " ") {              // space found → word ends
+        if (word.length > longest.length) {
+            longest = word;
+        }
+        word = "";               // reset for next word
+    } else {
+        word = word + ch;        // build the word
+    }
+}
+
+// Check last word in the sentence
+if (word.length > longest.length) {
+    longest = word;
+}
+
+console.log("Longest word:", longest);
+        </script>
+    </body>
+</html>
+
+
