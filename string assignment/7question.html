@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <script>
+      let str1 = "waterbottle";
+let str2 = "erbottlewat";
+
+// Check equal length without using !=
+let sameLength = (str1.length == str2.length);
+
+// Create doubled string
+let doubled = str1 + str1;
+
+// Check rotation
+let isRotation = false;
+
+if (sameLength) {
+    if (doubled.indexOf(str2) >= 0) {
+        isRotation = true;
+    }
+}
+
+if (isRotation) {
+    console.log("Rotation");
+} else {
+    console.log("Not Rotation");
+}
+
+
+        </script>
+    </body>
+</html>

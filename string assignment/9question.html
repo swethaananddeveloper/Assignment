@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+
+    </title>
+</head>
+<body>
+    <script>
+        let str = "abc";
+
+let p = "";
+
+for (let i = 0; i < str.length; i++) {
+    for (let j = 0; j < str.length; j++) {
+        // skip same index i and j using !== not allowed, so use <= or >= tricks
+        if (i <= j || i >= j) {
+            // but this condition is always true, so we avoid all conditions here
+        }
+
+        if (i === j) continue; // allowed because !== is banned but === is OK
+
+        for (let k = 0; k < str.length; k++) {
+            if (k === i) continue;
+            if (k === j) continue;
+
+            p = str[i] + str[j] + str[k];
+            console.log(p);
+        }
+    }
+}
+
+    </script>
+</body>
+</html>

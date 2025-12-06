@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Anagrams Program</title>
+    </head>
+    <body>
+        <script>
+let str1 = "listen";
+let str2 = "silent";
+
+// Convert to lowercase
+str1 = str1.toLowerCase();
+str2 = str2.toLowerCase();
+
+// Create counters
+let count1 = {};
+let count2 = {};
+
+// Count characters of str1
+for (let i = 0; i < str1.length; i++) {
+    let ch = str1[i];
+    if (count1[ch] === undefined) {
+        count1[ch] = 1;
+    } else {
+        count1[ch]++;
+    }
+}
+
+// Count characters of str2
+for (let i = 0; i < str2.length; i++) {
+    let ch = str2[i];
+    if (count2[ch] === undefined) {
+        count2[ch] = 1;
+    } else {
+        count2[ch]++;
+    }
+}
+
+// Compare both counters
+let isAnagram = true;
+
+for (let key in count1) {
+    if (count1[key] !== count2[key]) {
+        isAnagram = false;
+        break;
+    }
+}
+
+for (let key in count2) {
+    if (count1[key] !== count2[key]) {
+        isAnagram = false;
+        break;
+    }
+}
+
+if (isAnagram) {
+    console.log("Anagrams");
+} else {
+    console.log("Not Anagrams");
+}
+
+
+</script>
+    </body>
+</html>

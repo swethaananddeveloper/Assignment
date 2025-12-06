@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Conver sentence inti a Title case</title>
+    </head>
+    <body>
+        <script>
+
+const capital = (sentence) =>
+{
+const words = sentence.split(" ");
+const capital = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+
+return capital.join(" ");
+}
+console.log(capital("the quick brown fox"));
+
+</script>
+    </body>
+</html>

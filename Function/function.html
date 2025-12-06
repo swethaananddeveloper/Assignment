@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>FUNCTION</title>
+    </head>
+    <body>
+   
+   <script>
+  
+    //1.) Write a function that checks whether a given string is a palindrome (a word, phrase, or sequence that reads the same backward as forward).
+
+    function isPalindrome(str){
+    let reversed = "";
+    for(let i = str.length - 1; i >= 0; i--){
+        reversed += str[i];
+    }
+    if(str === reversed){
+        console.log("Palindrome");
+    } else {
+        console.log("Not a Palindrome");
+    }
+    }
+    isPalindrome("madam"); 
+    /*output -- Palindrome*/    
+
+    
+    //2.) Write a function that takes a string and returns it in reverse order.
+    function reverseString(str) {
+        return str.split("").reverse().join("");
+    }   
+    console.log(reverseString("daddy")); 
+    /*output -- yddad*/
+
+    //3.) Remove Whitespace from a String Write a function that removes all leading and trailing whitespace from a string.
+    function removeWhitespace(str) {
+        return str.trim();
+    }   
+    console.log(removeWhitespace("   welcome to javascript   ")); 
+    /*output -- welcome to javascript*/
+    
+    //4.) Sort an Array of Strings Alphabetically Write a function that sorts an array of strings.
+    function sortStrings(arr) {
+        return arr.sort();
+    }   
+    console.log(sortStrings(["banana", "apple", "orange", "mango"])); 
+    /*output -- [ 'apple', 'banana', 'mango', 'orange' ] */
+    
+    //5.) Create a function that takes two arrays and insert the second array in the middle of the first array.
+    //Examples
+     //tuckIn([1, 10], [2, 3, 4, 5, 6, 7, 8, 9]) ➞ [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+     //tuckIn([15,150], [45, 75, 35]) ➞ [15, 45, 75, 35, 150];
+
+      function tuckIn(arr1, arr2) {       
+      const midIndex = Math.floor(arr1.length / 2);
+      return [arr1.slice(0, midIndex), arr2, arr1.slice(midIndex)];
+      }    
+      console.log(tuckIn([1, 10], [2, 3, 4, 5, 6, 7, 8, 9])); 
+      console.log(tuckIn([15,150], [45, 75, 35])); 
+
+    /*output --
+    [ [ 1 ], [ 2, 3, 4, 5, 6, 7, 8, 9 ], [ 10 ] ]
+    [ [ 15 ], [ 45, 75, 35 ], [ 150 ] ]*/   
+      
+
+    //6.) Write a function that prints the multiplication table for a given number up to 10.
+
+    function multiplicationTable(num) {
+        for (let i = 1; i <= 10; i++) {
+            console.log(`${num} x ${i} = ${num * i}`);
+        }
+    }   
+    multiplicationTable(5); 
+    /*output --
+    5 x 1 = 5
+    5 x 2 = 10
+    5 x 3 = 15
+    5 x 4 = 20
+    5 x 5 = 25
+    5 x 6 = 30      
+    5 x 7 = 35
+    5 x 8 = 40
+    5 x 9 = 45
+    5 x 10 = 50*/
+
+    //7.) Write a function that prints all prime numbers up to a given number N.
+
+    function isPrime(num) {
+        if (num <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) return false;
+        }
+        return true;
+    }
+    function printPrimesUpToN(N) {
+        for (let i = 2; i <= N; i++) {
+            if (isPrime(i)) {
+                console.log(i);
+            }
+        }
+    }
+    printPrimesUpToN(20);
+    /*output --
+    2
+    3
+    5
+    7
+    11
+    13
+    17
+    19*/    
+
+    //8.) Write a function to calculate the factorial of a given number using a loop.
+
+    function factorial(num) {
+        let result = 1;
+        for (let i = 2; i <= num; i++) {
+            result *= i;
+        }
+        return result;
+    }   
+    console.log(factorial(5)); 
+    /*output -- 120*/   
+
+    //9.) Write a function that prints numbers from 1 to 100. For multiples of 3, print "Fizz", for multiples of 5 print "Buzz", and for multiples of both 3 and 5, print "FizzBuzz".
+      
+    function fizzBuzz() {
+        for (let i = 1; i <= 100; i++) {
+            if (i % 3 === 0 && i % 5 === 0) {
+                console.log("FizzBuzz");
+            } else if (i % 3 === 0) {
+                console.log("Fizz");
+            } else if (i % 5 === 0) {
+                console.log("Buzz");
+            } else {
+                console.log(i);
+            }
+        }
+    }
+    fizzBuzz();
+    /*output --
+    1
+    2
+    Fizz        
+    4
+    Buzz
+    Fizz
+    7
+    8
+    Fizz
+    Buzz
+    11
+    Fizz
+    13
+    14  
+    FizzBuzz
+    ...
+    98
+    99
+    Buzz*/
+
+   </script>
+</body>
+</html>
+

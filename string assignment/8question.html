@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+
+        </title>
+    </head>
+    <body>
+        <script>
+            let text = "hello";
+let result = "";
+let seen = {};  // to track characters
+
+for (let i = 0; i < text.length; i++) {
+    let ch = text[i];
+
+    // If character is not seen before
+    if (seen[ch] == undefined) {   
+        result += ch;
+        seen[ch] = true;
+    }
+}
+
+console.log(result);   
+        </script>
+    </body>
+</html>
