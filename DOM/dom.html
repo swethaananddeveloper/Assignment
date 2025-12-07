@@ -13,12 +13,13 @@ navbar.style.justifyContent = "space-between";
 navbar.style.alignItems = "center";
 navbar.style.background = "#111";
 navbar.style.padding = "15px 40px";
-navbar.style.color = "white";
+navbar.style.color = "Yellow";
 navbar.style.fontFamily = "Arial";
 
 // Website Logo
-const logo = document.createElement("h2");
-logo.innerText = "My Website";
+const logo = document.createElement("img");
+logo.src = "https://www.achieversit.com/assets/images/AIT-white.jpg";
+logo.innerText = "AchieverIT";
 logo.style.fontSize = "20px";
 logo.style.fontWeight = "bold";
 navbar.appendChild(logo);
@@ -31,7 +32,7 @@ menuItems.forEach((item) => {
     const link = document.createElement("a");
     link.innerText = item;
     link.style.marginLeft = "30px";
-    link.style.color = item === "Home" ? "red" : "white";
+    link.style.color = item === "Home" ? "yellow" : "orange";
     link.style.cursor = "pointer";
     link.style.textDecoration = "none";
     link.style.fontSize = "15px";
@@ -42,33 +43,33 @@ navbar.appendChild(menu);
 document.body.appendChild(navbar);
 
 // HERO SECTION
-const hero = document.createElement("div");
-hero.style.backgroundImage = "url('https://images.unsplash.com/photo-1519389950473-47ba0277781c')";
-hero.style.height = "400px";
-hero.style.backgroundSize = "cover";
-hero.style.backgroundPosition = "center";
-hero.style.display = "flex";
-hero.style.flexDirection = "column";
-hero.style.justifyContent = "center";
-hero.style.alignItems = "center";
-hero.style.color = "white";
-hero.style.textAlign = "center";
-hero.style.fontFamily = "Arial";
+const selection = document.createElement("div");
+selection.style.backgroundImage = "url('https://images.unsplash.com/photo-1519389950473-47ba0277781c')";
+selection.style.height = "400px";
+selection.style.backgroundSize = "cover";
+selection.style.backgroundPosition = "center";
+selection.style.display = "flex";
+selection.style.flexDirection = "column";
+selection.style.justifyContent = "center";
+selection.style.alignItems = "center";
+selection.style.color = "red";
+selection.style.textAlign = "center";
+selection.style.fontFamily = "Arial";
 
 // Heading
-const heroTitle = document.createElement("h1");
-heroTitle.innerText = "Welcome To My Website";
-heroTitle.style.fontSize = "36px";
-heroTitle.style.marginBottom = "10px";
-hero.appendChild(heroTitle);
+const selectionTitle = document.createElement("h1");
+selectionTitle.innerText = "Welcome To My Website";
+selectionTitle.style.fontSize = "50px";
+selectionTitle.style.marginBottom = "10px";
+selection.appendChild(selectionTitle);
 
 // Description
-const heroDesc = document.createElement("p");
-heroDesc.innerText = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, consequuntur?";
-heroDesc.style.fontSize = "14px";
-hero.appendChild(heroDesc);
+const selectionDesc = document.createElement("p");
+selectionDesc.innerText = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, consequuntur?";
+selectionDesc.style.fontSize = "20px";
+selection.appendChild(selectionDesc);
 
-document.body.appendChild(hero);
+document.body.appendChild(selection);
  
             
         </script>
