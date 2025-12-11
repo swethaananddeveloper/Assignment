@@ -2,12 +2,41 @@
 <html>
     <head>
         <title>Event</title>
-    </head>
-    <body>
-<!---1.) Difference between Event bubbling and Event capturing? Write an example.--->
-<script>
+  <style>
+    div{
+        border: 2px solid black;
+        margin: 10px;
+        padding: 5px;
+    }
+  </style>
 
+    </head>
+
+    <body>
+        <div id="grand"> I am grand Parent </div>
+        <div id="parent"> I am Parent </div>
+        <div id="child"> I am child </div>
+
+        <button>Click</button>
+<script>
+    // 1.) Difference between Event bubbling and Event capturing? Write an example.
     
+    // OutPut -- Event bubbling -- it means that when an event happens on a child element.the event automatically moves upwords through its parents, grand parent and upto the document.
+document.getElementById('grand').addEventListener(`click`, function(){
+    alert(`I am grand parent`)
+});
+document.getElementById('grand').addEventListener(`click`, function(){
+    alert(`I am parent`)
+});
+document.getElementById('grand').addEventListener(`click`, function(){
+    alert(`I am child`)
+});
+    
+  // 2.)How do you create and remove an element in dom?
+
+  //3.) Create a button that counts the number of times it has been clicked. Display the counter in a <span> element.
+      
+
 </script>
     </body>
 </html>
