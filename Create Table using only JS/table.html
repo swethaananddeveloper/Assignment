@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM- Create a Table on JS</title>
+    </head>
+    <body>
+        <script>
+            // Copy-paste this into your browser console or include in a .js loaded on a blank page.
+// It builds a table (5 columns, sample header + 10 rows) using only JS DOM methods.
+
+(function createTable() {
+  const columns = ['Col 1', 'Col 2', 'Col 3', 'Col 4', 'Col 5'];
+  const rowsCount = 10; // change to whatever number of rows you want
+
+  // create table and subelements
+  const table = document.createElement('table');
+  const thead = document.createElement('thead');
+  const tbody = document.createElement('tbody');
+
+  // optional inline styling applied via JS only (no external CSS file)
+  table.style.width = '100%';
+  table.style.borderCollapse = 'collapse';
+  table.style.fontFamily = 'Arial, sans-serif';
+  table.style.marginTop = '12px';
+
+  // header row
+  const headRow = document.createElement('tr');
+  columns.forEach(text => {
+    const th = document.createElement('th');
+    th.textContent = text;
+    th.style.border = '1px solid #999';
+    th.style.padding = '8px';
+    th.style.textAlign = 'left';
+    th.style.background = '#f2f2f2';
+    headRow.appendChild(th);
+  });
+  thead.appendChild(headRow);
+
+  // data rows
+  for (let r = 1; r <= rowsCount; r++) {
+    const tr = document.createElement('tr');
+    columns.forEach((col, cIdx) => {
+      const td = document.createElement('td');
+      td.textContent = `R${r}C${cIdx + 1}`; // sample cell text, change as needed
+      td.style.border = '1px solid #ddd';
+      td.style.padding = '8px';
+      tr.appendChild(td);
+    });
+    // zebra striping via JS
+    if (r % 2 === 0) tr.style.background = '#fbfbfb';
+    tbody.appendChild(tr);
+  }
+
+  table.appendChild(thead);
+  table.appendChild(tbody);
+
+  // append to body (or any other container chosen dynamically)
+  document.body.appendChild(table);
+})();
+
+        </script>
+    </body>
+</html>
