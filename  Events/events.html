@@ -21,6 +21,32 @@
       border: 2px solid black;
       cursor: pointer;
     }
+    #container {
+      width: 200px;
+      height: 100px;
+      background-color: #eee;
+    }
+
+    #text {
+      display: none;
+      margin-top: 10px;
+    }
+     #clickox {
+    width: 200px;
+    padding: 20px;
+    background-color: lightblue;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  body {
+    transition: background-color 0.3s ease;
+  }
+  button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }
+  
   </style>
 
     </head>
@@ -49,6 +75,39 @@
  
   <div id="bb">Double-click me</div>
 
+  <div id="container">Hover over me</div>
+  <p id="text">This text appears on hover</p>
+
+   <input type="text" id="inputText" placeholder="Type here">
+  <p>Characters typed: <span id="count">0</span></p>
+
+  <div id="clickox">Click me</div>
+
+  <input type="text" id="nameInput" placeholder="Type here">
+
+
+  <img
+  src="image1.jpg"
+  onmouseover="this.src='image2.jpg'"
+  onmouseout="this.src='image1.jpg'"
+  width="200"
+/>
+
+  <h2>Scroll down the page</h2>
+  <p style="height: 1500px;">Keep scrolling...</p>
+
+  <button id="addBtn">Add Item</button>
+
+<ul id="itemList">
+  <li>Item 1</li>
+</ul>
+
+<button id="myBtn">Click Me</button>
+<p id="message"></p>
+
+<button>Sample Button</button>
+<a href="#">Sample Link</a>
+<p>Click anywhere on this page</p>
 
 <script>
 // 1.) Difference between Event bubbling and Event capturing? Write an example.
@@ -90,12 +149,89 @@ document.getElementById('grand').addEventListener(`click`, function(){
       document.getElementById("y").textContent = event.offsetY;
     });
 //6.) Change the background color of a <div> when it's double-clicked.
-
-
     const bb = document.getElementById("bb");
     bb.addEventListener("dblclick", function () {
       bb.style.backgroundColor = "lightblue";
     });
+
+//7.) When the user hovers over a <div>, display some hidden text. Hide the text when the user stops hovering.
+         const container = document.getElementById("container");
+    const text = document.getElementById("text");
+
+    container.addEventListener("mouseenter", () => {
+      text.style.display = "block";
+    });
+
+    container.addEventListener("mouseleave", () => {
+      text.style.display = "none";
+    });
+    // 8.) Create an input field that displays how many characters the user has typed.
+    document.getElementById("inputText").addEventListener("input", function () {
+      document.getElementById("count").textContent = this.value.length;
+    });
+// 9.) Change the text inside a <div> when the user clicks on it
+
+    const ox = document.getElementById("clickox");
+
+  ox.addEventListener("click", function () {
+    ox.textContent = "Text changed!";
+  });
+
+
+//10.) When the user types in an input field, automatically convert the text to uppercase.
+    const input = document.getElementById("nameInput");
+
+  input.addEventListener("input", function () {
+    input.value = input.value.toUpperCase();
+  });
+//11.) Change an image to another when the user hovers over it and revert to the original image when the user stops hovering.
+  const img = document.getElementById("hoverImg");
+
+  img.addEventListener("mouseover", function () {
+    img.src = "image2.jpg";
+  });
+
+  img.addEventListener("mouseout", function () {
+    img.src = "image1.jpg";
+  });
+
+//12.) Change the background color of the page when the user scrolls past a certain point.
+window.addEventListener("scroll", function () {
+    if (window.scrollY > 200) {
+      document.body.style.backgroundColor = "lightblue";
+    } else {
+      document.body.style.backgroundColor = "white";
+    }
+  });
+
+//13.) Create a button that, when the button is clicked, Add a new list item to an unordered list.
+const button = document.getElementById("addBtn");
+  const list = document.getElementById("itemList");
+  let count = 2;
+
+  button.addEventListener("click", function () {
+    const li = document.createElement("li");
+    li.textContent = "Item " + count;
+    list.appendChild(li);
+    count++;
+  });
+
+//14.) Once the user clicks a button, disable it and display a message that the button has been clicked
+const btn = document.getElementById("myBtn");
+  const msg = document.getElementById("message");
+
+  btn.addEventListener("click", function () {
+    btn.disabled = true;
+    msg.textContent = "The button has been clicked.";
+  });
+//15.) Capture and log every single click made anywhere on the page, including clicks on the document, buttons, links, etc.
+document.addEventListener("click", function (event) {
+    console.log("Clicked Element:", event.target);
+    console.log("Tag Name:", event.target.tagName);
+    console.log("X:", event.clientX, "Y:", event.clientY);
+  });
+
+
 
 </script>
     </body>    
