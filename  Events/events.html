@@ -13,6 +13,9 @@
     </head>
 
     <body>
+         <div id="container"></div>
+
+
         <div id="grand"> I am gr and Parent 
         <div id="parent"> I am Parent 
         <div id="child"> I am child 
@@ -21,24 +24,46 @@
             </div>
 
         <button>Click</button>
+
+  <button id="clickBtn">Click Me</button>
+  <p>Clicked <span id="count">0</span> times</p>
 <script>
     // 1.) Difference between Event bubbling and Event capturing? Write an example.
     
     // OutPut -- Event bubbling -- it means that when an event happens on a child element.the event automatically moves upwords through its parents, grand parent and upto the document.
 document.getElementById('grand').addEventListener(`click`, function(){
     alert(`I am grand parent`)
-});
+}, true);
 document.getElementById('grand').addEventListener(`click`, function(){
     alert(`I am parent`)
 });
 document.getElementById('grand').addEventListener(`click`, function(){
     alert(`I am child`)
-});
+},true);
     
   // 2.)How do you create and remove an element in dom?
 
+
+  // Create a new element
+  let para = document.createElement("p");
+
+  // Add text to the element
+  para.textContent = "This paragraph is created using DOM";
+
+  // Append it to an existing element
+  document.getElementById("container").appendChild(para);
+
+  para.remove();
+let parent = document.getElementById("container");
+  parent.removeChild(para);
+
   //3.) Create a button that counts the number of times it has been clicked. Display the counter in a <span> element.
-      
+      let count = 0;
+
+    document.getElementById("clickBtn").addEventListener("click", () => {
+      count++;
+      document.getElementById("count").textContent = count;
+    });
 
 </script>
     </body>
