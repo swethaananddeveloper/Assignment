@@ -8,6 +8,19 @@
         margin: 10px;
         padding: 5px;
     }
+    #box {
+      width: 300px;
+      height: 200px;
+      border: 2px solid black;
+      margin-top: 20px;
+    }
+    #bb {
+      width: 200px;
+      height: 150px;
+      background-color: lightgray;
+      border: 2px solid black;
+      cursor: pointer;
+    }
   </style>
 
     </head>
@@ -27,9 +40,18 @@
 
   <button id="clickBtn">Click Me</button>
   <p>Clicked <span id="count">0</span> times</p>
+
+   <h3>Press any key</h3>
+  <p>Key pressed: <span id="keyName">None</span></p>
+
+  <p>X: <span id="x">0</span> | Y: <span id="y">0</span></p>
+  <div id="box">Move mouse here</div>
+ 
+  <div id="bb">Double-click me</div>
+
+
 <script>
-    // 1.) Difference between Event bubbling and Event capturing? Write an example.
-    
+// 1.) Difference between Event bubbling and Event capturing? Write an example.
     // OutPut -- Event bubbling -- it means that when an event happens on a child element.the event automatically moves upwords through its parents, grand parent and upto the document.
 document.getElementById('grand').addEventListener(`click`, function(){
     alert(`I am grand parent`)
@@ -40,31 +62,41 @@ document.getElementById('grand').addEventListener(`click`, function(){
 document.getElementById('grand').addEventListener(`click`, function(){
     alert(`I am child`)
 },true);
-    
-  // 2.)How do you create and remove an element in dom?
-
-
+// 2.)How do you create and remove an element in dom?
   // Create a new element
   let para = document.createElement("p");
-
   // Add text to the element
   para.textContent = "This paragraph is created using DOM";
-
   // Append it to an existing element
   document.getElementById("container").appendChild(para);
-
   para.remove();
-let parent = document.getElementById("container");
+  let parent = document.getElementById("container");
   parent.removeChild(para);
 
-  //3.) Create a button that counts the number of times it has been clicked. Display the counter in a <span> element.
+//3.) Create a button that counts the number of times it has been clicked. Display the counter in a <span> element.
       let count = 0;
-
     document.getElementById("clickBtn").addEventListener("click", () => {
       count++;
       document.getElementById("count").textContent = count;
     });
+//4.) Detect and display the key that the user presses on the keyboard.
+     document.addEventListener("keydown", function (event) {
+      document.getElementById("keyName").textContent = event.key;
+    });
+//5.) Track and display the mouse's current X and Y coordinates as the user moves the mouse over a <div>.
+      const box = document.getElementById("box");
+    box.addEventListener("mousemove", function (event) {
+      document.getElementById("x").textContent = event.offsetX;
+      document.getElementById("y").textContent = event.offsetY;
+    });
+//6.) Change the background color of a <div> when it's double-clicked.
+
+
+    const bb = document.getElementById("bb");
+    bb.addEventListener("dblclick", function () {
+      bb.style.backgroundColor = "lightblue";
+    });
 
 </script>
-    </body>
+    </body>    
 </html>
