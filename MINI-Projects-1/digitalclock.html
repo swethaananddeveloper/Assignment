@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12-Hour Digital Clock with Captcha</title>
+<style>
+    body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f4f9;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#wordsInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+    resize: vertical; /* Allow vertical resizing */
+}
+
+#vowelCountDisplay {
+    color: #007bff;
+    margin-bottom: 30px;
+    font-size: 1.5em;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+#countButton {
+    background-color: #28a745; /* Green for Count */
+    color: white;
+}
+
+#countButton:hover {
+    background-color: #218838;
+}
+
+#resetButton {
+    background-color: #dc3545; /* Red for Reset */
+    color: white;
+}
+
+#resetButton:hover {
+    background-color: #c82333;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>Digital Clock (12-Hour Format)</h2>
+        <div id="clockDisplay" class="clock-box">
+            00:00:00 PM
+        </div>
+
+        <hr>
+
+        <h2>Captcha Verification</h2>
+        
+        <div class="captcha-group">
+            <p>Enter the text shown below:</p>
+            <div id="captchaDisplay" class="captcha-box"></div>
+            
+            <input type="text" id="captchaInput" placeholder="Enter Captcha here">
+            
+            <div class="captcha-buttons">
+                <button id="verifyButton">Verify Captcha</button>
+                <button id="refreshButton">Refresh Captcha</button>
+            </div>
+
+            <p id="captchaStatus" class="status-message"></p>
+        </div>
+    </div>
+
+<script>
+    // --- Global variable to store the currently displayed Captcha ---
+let currentCaptcha = '';
+
+// --- Get references to the necessary DOM elements ---
+const clockDisplay = document.getElementById('clockDisplay');
+const captchaDisplay = document.getElementById('captchaDisplay');
+const captchaInput = document.getElementById('captchaInput');
+const captchaStatus = document.getElementById('captchaStatus');
+const verifyButton = document.getElementById('verifyButton');
+const refreshButton = document.getElementById('refreshButton');
+
+// --------------------------------------------------------
+// PART 1: DIGITAL CLOCK LOGIC (12-HOUR FORMAT)
+// --------------------------------------------------------
+
+/**
+ * Updates the clock display with the current time in 12-hour format.
+ */
+function updateClock() {
+    // Get the current date and time
+    const now = new Date();
+    
+    // Get hours, minutes, and seconds
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+    
+    // Determine AM or PM
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    
+    // Convert 24-hour format to 12-hour format (0 to 12)
+    // If hours is 0 (midnight), set to 12. If hours > 12, subtract 12.
+    hours = hours % 12;
+    hours = hours ? hours : 12; // The hour '0' should be '12'
+    
+    // Pad minutes and seconds with a leading zero if they are less than 10
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    
+    // Construct the final time string
+    const timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+    
+    // Update the HTML element
+    clockDisplay.textContent = timeString;
+}
+
+// Set up the clock to update every 1000 milliseconds (1 second)
+setInterval(updateClock, 1000);
+
+// Initialize the clock immediately on load
+updateClock();
+
+
+// --------------------------------------------------------
+// PART 2: DYNAMIC CAPTCHA LOGIC
+// --------------------------------------------------------
+
+/**
+ * Generates a random alphanumeric string for the Captcha.
+ * @param {number} length The desired length of the captcha string.
+ * @returns {string} The generated captcha string.
+ */
+function generateCaptcha(length = 6) {
+    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    let captcha = '';
+    
+    for (let i = 0; i < length; i++) {
+        // Select a random character from the defined set
+        const randomIndex = Math.floor(Math.random() * chars.length);
+        captcha += chars[randomIndex];
+    }
+    
+    return captcha;
+}
+
+/**
+ * its generates a new Captcha, stores it, and updates the display.
+ */
+function loadNewCaptcha() {
+    // Generate the new random captcha string
+    currentCaptcha = generateCaptcha(6); 
+    
+    // Update the Captcha display element
+    captchaDisplay.textContent = currentCaptcha;
+    
+    // Clear the input field and status message when a new Captcha loads
+    captchaInput.value = '';
+    captchaStatus.textContent = '';
+    captchaStatus.classList.remove('success', 'failure');
+}
+
+/**
+ * Checks if the user's input matches the displayed Captcha.
+ */
+function verifyCaptcha() {
+    // Get the user's input and ensure it matches the case of the generated Captcha
+    const userInput = captchaInput.value;
+    
+    // Compare the user input with the actual captcha string
+    if (userInput === currentCaptcha) {
+        captchaStatus.textContent = 'Verification Successful! ✅';
+        captchaStatus.classList.remove('failure');
+        captchaStatus.classList.add('success');
+        
+        // Load a new captcha for the *next* attempt (since this one was used)
+        loadNewCaptcha(); 
+    } else {
+        captchaStatus.textContent = 'Verification Failed. Please try again. ❌';
+        captchaStatus.classList.remove('success');
+        captchaStatus.classList.add('failure');
+        
+        // Clear the incorrect input but keep the current captcha displayed
+        captchaInput.value = '';
+    }
+}
+
+// --- Event Listeners for Captcha buttons ---
+
+// 1. When the "Verify Captcha" button is clicked
+verifyButton.addEventListener('click', verifyCaptcha);
+
+// 2. When the "Refresh Captcha" button is clicked
+refreshButton.addEventListener('click', loadNewCaptcha);
+
+// 3. Optional: Allow verification by pressing 'Enter' in the input field
+captchaInput.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        verifyCaptcha();
+    }
+});
+
+// --- Initialize the Captcha on page load (as required: "each time loading captache should change") ---
+window.onload = loadNewCaptcha;
+</script>
+
+</body>
+</html>
