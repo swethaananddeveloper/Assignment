@@ -70,7 +70,7 @@ button {
 }
 
 #resetButton {
-    background-color: #dc3545; /* Red for Reset */
+    background-color: #dc3545; 
     color: white;
 }
 
@@ -106,10 +106,7 @@ button {
     </div>
 
 <script>
-    // --- Global variable to store the currently displayed Captcha ---
 let currentCaptcha = '';
-
-// --- Get references to the necessary DOM elements ---
 const clockDisplay = document.getElementById('clockDisplay');
 const captchaDisplay = document.getElementById('captchaDisplay');
 const captchaInput = document.getElementById('captchaInput');
@@ -117,63 +114,35 @@ const captchaStatus = document.getElementById('captchaStatus');
 const verifyButton = document.getElementById('verifyButton');
 const refreshButton = document.getElementById('refreshButton');
 
-// --------------------------------------------------------
-// PART 1: DIGITAL CLOCK LOGIC (12-HOUR FORMAT)
-// --------------------------------------------------------
-
-/**
- * Updates the clock display with the current time in 12-hour format.
- */
 function updateClock() {
     // Get the current date and time
     const now = new Date();
-    
-    // Get hours, minutes, and seconds
     let hours = now.getHours();
     let minutes = now.getMinutes();
     let seconds = now.getSeconds();
-    
-    // Determine AM or PM
     const ampm = hours >= 12 ? 'PM' : 'AM';
-    
-    // Convert 24-hour format to 12-hour format (0 to 12)
-    // If hours is 0 (midnight), set to 12. If hours > 12, subtract 12.
     hours = hours % 12;
-    hours = hours ? hours : 12; // The hour '0' should be '12'
+    hours = hours ? hours : 12; 
     
-    // Pad minutes and seconds with a leading zero if they are less than 10
     minutes = minutes < 10 ? '0' + minutes : minutes;
     seconds = seconds < 10 ? '0' + seconds : seconds;
     
-    // Construct the final time string
     const timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
     
-    // Update the HTML element
     clockDisplay.textContent = timeString;
 }
 
-// Set up the clock to update every 1000 milliseconds (1 second)
 setInterval(updateClock, 1000);
-
-// Initialize the clock immediately on load
 updateClock();
 
 
-// --------------------------------------------------------
-// PART 2: DYNAMIC CAPTCHA LOGIC
-// --------------------------------------------------------
 
-/**
- * Generates a random alphanumeric string for the Captcha.
- * @param {number} length The desired length of the captcha string.
- * @returns {string} The generated captcha string.
- */
+
 function generateCaptcha(length = 6) {
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     let captcha = '';
     
     for (let i = 0; i < length; i++) {
-        // Select a random character from the defined set
         const randomIndex = Math.floor(Math.random() * chars.length);
         captcha += chars[randomIndex];
     }
@@ -181,63 +150,46 @@ function generateCaptcha(length = 6) {
     return captcha;
 }
 
-/**
- * its generates a new Captcha, stores it, and updates the display.
- */
+
 function loadNewCaptcha() {
-    // Generate the new random captcha string
     currentCaptcha = generateCaptcha(6); 
     
-    // Update the Captcha display element
     captchaDisplay.textContent = currentCaptcha;
     
-    // Clear the input field and status message when a new Captcha loads
     captchaInput.value = '';
     captchaStatus.textContent = '';
     captchaStatus.classList.remove('success', 'failure');
 }
 
-/**
- * Checks if the user's input matches the displayed Captcha.
- */
+
 function verifyCaptcha() {
-    // Get the user's input and ensure it matches the case of the generated Captcha
     const userInput = captchaInput.value;
     
-    // Compare the user input with the actual captcha string
     if (userInput === currentCaptcha) {
-        captchaStatus.textContent = 'Verification Successful! ✅';
+        captchaStatus.textContent = 'Verification Successful! ';
         captchaStatus.classList.remove('failure');
         captchaStatus.classList.add('success');
         
-        // Load a new captcha for the *next* attempt (since this one was used)
         loadNewCaptcha(); 
     } else {
-        captchaStatus.textContent = 'Verification Failed. Please try again. ❌';
+        captchaStatus.textContent = 'Verification Failed. Please try again. ';
         captchaStatus.classList.remove('success');
         captchaStatus.classList.add('failure');
         
-        // Clear the incorrect input but keep the current captcha displayed
         captchaInput.value = '';
     }
 }
 
-// --- Event Listeners for Captcha buttons ---
 
-// 1. When the "Verify Captcha" button is clicked
 verifyButton.addEventListener('click', verifyCaptcha);
 
-// 2. When the "Refresh Captcha" button is clicked
 refreshButton.addEventListener('click', loadNewCaptcha);
 
-// 3. Optional: Allow verification by pressing 'Enter' in the input field
 captchaInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         verifyCaptcha();
     }
 });
-
-// --- Initialize the Captcha on page load (as required: "each time loading captache should change") ---
 window.onload = loadNewCaptcha;
 </script>
 
