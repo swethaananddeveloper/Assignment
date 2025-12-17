@@ -36,7 +36,7 @@ h1 {
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box; /* Include padding in the element's total width and height */
+    box-sizing: border-box; 
     resize: vertical; /* Allow vertical resizing */
 }
 
@@ -95,76 +95,44 @@ button {
     </div>
 
    <script>
-    // --- Use comments where necessary (as requested in the instructions) ---
 
-// Get references to the necessary DOM elements
 const wordsInput = document.getElementById('wordsInput');
 const vowelCountDisplay = document.getElementById('vowelCountDisplay');
 const countButton = document.getElementById('countButton');
 const resetButton = document.getElementById('resetButton');
 
-/**
- * Counts the number of vowels (a, e, i, o, u, case-insensitive)
- * in a given string.
- * @param {string} text The string to search within.
- * @returns {number} The total count of vowels.
- */
+
 function countVowels(text) {
-    // 1. Convert the entire string to lowercase to handle both 'A' and 'a' easily.
+   
     const lowercasedText = text.toLowerCase();
-    
-    // 2. Define the set of vowels to look for.
     const vowels = ['a', 'e', 'i', 'o', 'u'];
-    
-    // 3. Initialize the counter.
-    let count = 0;
-    
-    // 4. Loop through each character of the lowercased text.
-    for (let i = 0; i < lowercasedText.length; i++) {
+        let count = 0;
+        for (let i = 0; i < lowercasedText.length; i++) {
         const char = lowercasedText[i];
-        
-        // 5. Check if the current character is present in the vowels array.
-        if (vowels.includes(char)) {
+                if (vowels.includes(char)) {
             count++;
         }
     }
     
-    // 6. Return the final count.
     return count;
 }
-
-/**
- * Handles the logic for the "Count Vowels" button click.
- * Reads the text, counts the vowels, and updates the display.
- */
 function handleCount() {
-    // Get the text from the textarea. The 'value' property holds the input text.
     const inputWords = wordsInput.value;
     
-    // Calculate the vowel count using the function.
     const vowelCount = countVowels(inputWords);
     
-    // Update the h2 tag with the new count.
     vowelCountDisplay.textContent = `Vowel count: ${vowelCount}`;
 }
 
-/**
- * Handles the logic for the "Reset" button click.
- * Clears the textarea and resets the count display to 0.
- */
+
 function handleReset() {
-    // Clear the textarea by setting its value to an empty string.
     wordsInput.value = '';
     
-    // Reset the vowel count display to 0.
     vowelCountDisplay.textContent = 'Vowel count: 0';
 }
 
-// Attach the event listeners to the buttons (This is the necessary code)
-// When the 'Count Vowels' button is clicked, execute the handleCount function.
 countButton.addEventListener('click', handleCount);
 
-// When the 'Reset' button is clicked, execute the handleReset function.
 resetButton.addEventListener('click', handleReset);
    </script>
 </body>
