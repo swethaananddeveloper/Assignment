@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.) Create an Image slider using html, css & Javascript.</title>
+<style>
+/*main container/dark background/center content*/
+.outbox{
+    width: 80%;
+    height: 100%;
+    border: 10px;
+    box-sizing: border-box;
+    padding: 20px 10px;
+    background-color: rgb(19, 13, 46);
+    margin: 40px;
+    text-align: center;
+}
+/*Title Text Color*/
+h1{     
+    color: white;
+}
+/*Slider Image*/
+.slider img{
+    width: 600px;
+    height: 400px;
+    border-radius: 10px;
+}
+/*Buttons Style*/
+.buttons{
+    margin-top: 20px;
+}
+.buttons button{
+    background-color: rgb(237, 233, 96);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    gap: none;
+}
+.buttons button:hover{
+    background-color: rgb(164, 194, 55);
+    color: white;
+}
+
+</style></head>
+<body>
+    <div class="outbox">
+        <h1>Image Slider</h1>
+        <div class="slider">
+            <img id="slideimg" src="https://via.placeholder.com/600x400?text=Image+1" alt="Image Slider">
+        </div>
+        <div class="buttons">
+            <button id="prevbtn">Previous</button>
+            <button id="nextbtn">Next</button>
+        </div>
+    </div>
+    <script>
+        const images = [
+            "https://via.placeholder.com/600x400?text=Image+1",
+            "https://via.placeholder.com/600x400?text=Image+2",
+            "https://via.placeholder.com/600x400?text=Image+3",
+            "https://via.placeholder.com/600x400?text=Image+4",
+            "https://via.placeholder.com/600x400?text=Image+5"
+        ];
+
+        let currentIndex = 0;
+
+        const slideimg = document.getElementById('slideimg');
+        const prevbtn = document.getElementById('prevbtn');
+        const nextbtn = document.getElementById('nextbtn');
+
+        function showImage(index) {
+            slideimg.src = images[index];
+        }
+
+        prevbtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        });
+
+        nextbtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        });
+
+        // Initial display
+        showImage(currentIndex);
+    </script>
+</body>
+</html> 
