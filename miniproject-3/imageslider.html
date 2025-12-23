@@ -1,90 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1.) Create an Image slider using html, css & Javascript.</title>
+  <meta charset="UTF-8">
+  <title>Image Slider</title>
 <style>
-/*main container/dark background/center content*/
-.outbox{
-    width: 80%;
-    height: 100%;
-    border: 10px;
-    box-sizing: border-box;
-    padding: 20px 10px;
-    background-color: rgb(19, 13, 46);
-    margin: 40px;
-    text-align: center;
-}
-/*Title Text Color*/
-h1{     
-    color: white;
-}
-/*Slider Image*/
-.slider img{
-    width: 600px;
-    height: 400px;
-    border-radius: 10px;
-}
-/*Buttons Style*/
-.buttons{
-    margin-top: 20px;
-}
-.buttons button{
-    background-color: rgb(237, 233, 96);
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    gap: none;
-}
-.buttons button:hover{
-    background-color: rgb(164, 194, 55);
-    color: white;
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-</style></head>
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+}
+
+.slider {
+  width: 800px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.slide {
+  width: 100%;
+  display: none;
+  cursor: pointer;
+}
+
+.slide.active {
+  display: block;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+}
+
+button {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  background: purple;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #5e1a82;
+}
+
+</style>
+
+</head>
 <body>
-    <div class="outbox">
-        <h1>Image Slider</h1>
-        <div class="slider">
-            <img id="slideimg" src="https://via.placeholder.com/600x400?text=Image+1" alt="Image Slider">
-        </div>
-        <div class="buttons">
-            <button id="prevbtn">Previous</button>
-            <button id="nextbtn">Next</button>
-        </div>
-    </div>
-    <script>
-        const images = [
-            "./img/bird.jpeg",
-            "./img/cartooncar.jpeg",
-            "./img/friends.jpeg",
-            "./img/pinkflower.jpeg",
-            "./img/f1-night-race.jpg"
-        ];
 
-        let currentIndex = 0;
+<div class="slider">
+  <img src="img/bird.jpeg" class="slide active">
+  <img src="img/pinkflower.jpeg" class="slide">
+  <img src="img/friends.jpeg" class="slide">
+  <img src="img/flower.jpeg" class="slide">
+  <img src="img/f1-night-race.jpg" class="slide">
+  <img src="img/shinchan.jpeg" class="slide">
 
-        const slideimg = document.getElementById('slideimg');
-        const prevbtn = document.getElementById('prevbtn');
-        const nextbtn = document.getElementById('nextbtn');
+  <div class="buttons">
+    <button id="prevBtn">Prev</button>
+    <button id="nextBtn">Next</button>
+  </div>
+</div>
 
-        function showImage(index) {
-            slideimg.src = images[index];
-        }
+<script>
+const slides = document.querySelectorAll('.slide');
+const nextBtn = document.getElementById('nextBtn');
+const prevBtn = document.getElementById('prevBtn');
 
-        prevbtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            showImage(currentIndex);
-        });
+let currentIndex = 0;
 
-        nextbtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % images.length;
-            showImage(currentIndex);
-        });
+function showSlide(index) {
+  slides.forEach(slide => slide.classList.remove('active'));
+  slides[index].classList.add('active');
+}
 
-        // Initial display
-        showImage(currentIndex);
-    </script>
+function nextSlide() {
+  currentIndex = (currentIndex + 1) % slides.length;
+  showSlide(currentIndex);
+}
+
+function prevSlide() {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  showSlide(currentIndex);
+}
+
+// Button click
+nextBtn.addEventListener('click', nextSlide);
+prevBtn.addEventListener('click', prevSlide);
+
+// Image click → next
+slides.forEach(slide => {
+  slide.addEventListener('click', nextSlide);
+});
+</script>
 </body>
-</html> 
+</html>
