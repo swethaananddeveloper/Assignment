@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ES6 Operators</title>
+    </head>
+    <body>
+        <script>
+
+
+
+
+
+let i=0;
+function greet() {
+i++;
+if(i<=5){
+    console.log(i);
+    greet();
+}
+}
+greet();
+
+/* Task 3: USE recursive function - arr = ["India", ["Dubai","Italy", ["Paris"]],  "USA"]; it should be a function which is get called itself  */
+/* it should be store in without array and  dont use for method  and it should be execute in isingle line */
+
+const arr = ["India", ["Dubai", "Italy", ["Paris"], "Kaj"]];
+
+
+function flattenArray(array) {
+  if (array.length === 0) return [];
+  const [first, ...rest] = array;
+  if (Array.isArray(first)) {
+    return [...flattenArray(first), ...flattenArray(rest)];
+  } else {
+    return [first, ...flattenArray(rest)];
+  }
+}
+
+console.log(flattenArray(arr));
+// Output: ["India", "Dubai", "Italy", "Paris", "Kaj"]
+
+
+
+
+</script>
+</body>
+</html>         
