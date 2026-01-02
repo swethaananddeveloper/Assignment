@@ -19,6 +19,44 @@ return ele * ele
     )
     console.log(numbers)
 
+           //2.) Use “filter” to create a new array containing only even numbers.
+           // Example: Input: [1, 2, 3, 4, 5, 6] and Output: [2, 4, 6]
+
+        const filterArr = [1,2,3,4,5,6]
+
+        const Num= filterArr.filter((ele, i, array)=>
+    {
+        return ele % 2 == 0;
+    })
+console.log(Num)
+
+          // 3.) Use “map” to return a new array where each string is in uppercase.
+ //  Example: Input: ["apple", "banana", "cherry"]
+
+ const fruits =["apple","banana","cherry"]
+
+ const capsFrt = fruits.map((ele, i ,array)=>{
+    return ele.toUpperCase();
+ })
+ console.log(capsFrt)
+
+ //5.) Use “map” to create an array containing only the names from an array of objects.
+// Example: Input: [{ name: "Peter", age: 25 }, { name: "Jessica", age: 30 }];
+// Output: ["Peter", "Jessica"]
+
+
+
+ // 4.) Use “forEach” to calculate the sum of an array.
+  // Input: [1, 2, 3, 4] and Output: 10
+
+  const xyz =[1,2,3,4]
+  const sum = 0
+
+  xyz.forEach((ele, i, array) => {
+    return sum += ele;
+  });
+  console.log(sum)
+
         </script>
     </body>
 </html>
