@@ -40,9 +40,6 @@ console.log(Num)
  })
  console.log(capsFrt)
 
- //5.) Use “map” to create an array containing only the names from an array of objects.
-// Example: Input: [{ name: "Peter", age: 25 }, { name: "Jessica", age: 30 }];
-// Output: ["Peter", "Jessica"]
 
 
 
@@ -50,12 +47,56 @@ console.log(Num)
   // Input: [1, 2, 3, 4] and Output: 10
 
   const xyz =[1,2,3,4]
-  const sum = 0
+  let sum = 0
 
   xyz.forEach((ele, i, array) => {
     return sum += ele;
   });
   console.log(sum)
+
+
+ //5.) Use “map” to create an array containing only the names from an array of objects.
+// Example: Input: [{ name: "Peter", age: 25 }, { name: "Jessica", age: 30 }];
+// Output: ["Peter", "Jessica"]
+const details = [{ name: "Peter", age: 25 }, { name: "Jessica", age: 30 }];
+
+const names = details.map((ele, i , array)=>{
+    return ele.name;
+})
+console.log(names);
+
+//7.) Use “map” to add an exclamation mark to each string.
+//Example: Input: ["hello", "world"] and Output: ["hello!", "world!"]
+
+const words = ["hello", "world"];
+const resul = words.map((ele, i, array)=>{
+    return ele + "!";
+})
+console.log(resul);
+
+//8.) Calculate the Length of Each String in an Array using map method
+
+
+//9.) Extract Domains from Email Addresses using map method.
+
+//10.) Separate Even and Odd Numbers into Two Arrays using forEach.
+
+  //6.) Use “forEach” and “filter” to find duplicate values.
+// Example: Input: [1, 2, 3, 4, 2, 3] and Output: [2, 3]
+
+const abc = [1,2,3,4,2,3]
+const res = []
+
+abc.forEach((ele, i, array)=>{
+if(!res.includes(ele)){
+    res.push(ele)
+}
+})
+console.log(res)
+const outR=res.filter((ele,i, array)=>{
+    return array.indexOf(ele) === index;
+});
+console.log(outR)
 
         </script>
     </body>
