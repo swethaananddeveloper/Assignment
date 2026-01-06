@@ -13,8 +13,6 @@
          // { name: "assets", children: [{ name: "img", children: [] }] }
            // ]
            //};
-
-           
               const folders = {
                 name: "root",
                 children: [
@@ -30,29 +28,30 @@
 
             //2.) Write a function that calculates the sum of all numbers in a nested array using recursion and reduce.
             // Example: Input => [1, [2, [3, 4]], 5] ; Output: 15
-            function sumNestedArray(arr) {
-                return arr.reduce((acc, curr) => {
-                    if (Array.isArray(curr)) {
-                        return acc + sumNestedArray(curr);
+            const cal = [1, [2, [3, 4]], 5]
+            function sumNestedArray(cal) {
+                return cal.reduce((lm, rt) => {
+                    if (Array.isArray(rt)) {
+                        return lm + sumNestedArray(rt);
                     }
-                    return acc + curr;
+                    return lm + rt;
                 }, 0);
             }
-            console.log(sumNestedArray([1, [2, [3, 4]], 5])); 
+            console.log(sumNestedArray(cal)); 
 
             //3.) Given an array of numbers, write a function that returns the sum of even numbers using only filter and reduce. (Use High-Order-Function).
 
             const arr = [1, 2, 3, 4, 5, 6, 7,8, 9,10];
-            function sumEvenNumbers(arr) {
+            function sumEvenNum(arr) {
                 return arr.filter(num => num % 2 === 0).reduce((acc, curr) => acc + curr, 0);
             }
-            console.log(sumEvenNumbers(arr)); // Output: 30
+            console.log(sumEvenNum(arr)); // Output: 30
 
             //4.) Implement your own version of map without using Array.prototype.map. (Use High-Order-Function).
             function myMap(abc, xyz) {
                 const result = [];
-                myForEach(abc, function(element, index, array) {
-                    result.push(xyz(element, index, array));
+                myForEach(abc, function(ele, i, arr) {
+                    result.push(xyz(ele, i, arr));
                 });
                 return result;
             }
@@ -63,54 +62,37 @@
             let square = function square(num) {
                 return num * num;
             }
-            const numbers = [1, 2, 3, 4, 5];
-            const doubled = myMap(numbers, double);
-            const squared = myMap(numbers, square);
+            const num = [1, 2, 3, 4, 5,30, 35, 33, 70, 45];
+            const doubled = myMap(num, double);
+            const squared = myMap(num, square);
             console.log("Doubled:", doubled);
             console.log("Squared:", squared);
 
             //5.Write a function myForEach that takes an array and a callback function and works like Array.prototype.forEach. (Callback Function – Custom forEach)
-            function myForEach(array, callback) {
-                for (var i = 0; i < array.length; i++) {
-                    callback(array[i], i, array);
+            function myForEach(ml, cb) {
+                for (var i = 0; i < ml.length; i++) {
+                    cb(ml[i], i, ml);
                 }
             }
 
-            myForEach([1, 2, 3], function(element, index, array) {
-                console.log("Element at index " + index + " is " + element);
+           let aL = myForEach([1, 2, 3], function(ele, i, arr) {
+                console.log("Element at index " + i + " is " + ele);
             });
 
             //6.) Write a curried function that allows infinite chaining and returns the sum when called with no arguments.
-            function currFun(){
-                let sum = [5,6,7,8,9,10,23]
-                function addToSum(sum) {
-                    sum.push(sum);
-                    return addToSum;
-                }
-                addToSum.valueOf = function() {
-                    return sum.reduce((acc, curr) => acc + curr, 0);
-                };
-                return addToSum;
-            }
-            const curried = currFun();
-            console.log(+curried);
-
-
-            
-            
-            function createCurriedSum() {
+             function ctCrSum() {
                 let sum = 0;
-                function curriedAdd(num) {
+                function ctAdd(num) {
                     if (num === undefined) {
                         return sum;
                     }
                     sum += num;
-                    return curriedAdd;
+                    return ctAdd;
                 }
-                return curriedAdd;
+                return ctAdd;
             }
-            const curriedSum = createCurriedSum();
-            console.log(curriedSum(1)(2)(3)()); 
+            const ctSum = ctCrSum();
+            console.log(ctSum(1)(2)(3)());
 
         </script>
     </body>
