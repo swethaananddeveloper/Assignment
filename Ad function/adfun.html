@@ -14,10 +14,7 @@
            // ]
            //};
 
-           function printFolderStructure(folder, indent = 0) {
-               console.log("  ".repeat(indent) + folder.name);
-               folder.children.forEach(child => printFolderStructure(child, indent + 1));
-           }
+           
               const folders = {
                 name: "root",
                 children: [
@@ -25,7 +22,11 @@
                      { name: "assets", children: [{ name: "img", children: [] }] }
                 ]
             };
-            printFolderStructure(folders);
+            function pntFldStr(f, i = 0) {
+               console.log("  ".repeat(i) + f.name);
+               f.children.forEach(child => pntFldStr(child, i + 1));
+           }
+            pntFldStr(folders);
 
             //2.) Write a function that calculates the sum of all numbers in a nested array using recursion and reduce.
             // Example: Input => [1, [2, [3, 4]], 5] ; Output: 15
